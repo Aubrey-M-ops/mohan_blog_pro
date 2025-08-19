@@ -1,5 +1,5 @@
 ---
-weight: 1
+weight: 3
 title: "React - memo, useMemo, useCallback"
 date: 2022-06-06T21:29:01+08:00
 lastmod: 2022-06-06T21:29:01+08:00
@@ -8,7 +8,7 @@ author: "Christine Li"
 images: []
 resources:
 - name: "featured-image"
-  src: "featured-image.png"
+  src: "cover.png"
 
 tags: ["react", "frontend"]
 categories: ["frontend"]

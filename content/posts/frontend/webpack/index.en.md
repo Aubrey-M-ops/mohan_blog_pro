@@ -1,5 +1,5 @@
 ---
-weight: 5
+weight: 2
 title: "A Practical Walkthrough of Webpack’s Core Concepts"
 date: 2023-01-17T18:34:11+08:00
 lastmod: 2023-01-17T18:34:11+08:00
@@ -8,7 +8,7 @@ author: "Christine Li"
 images: []
 resources:
 - name: "featured-image"
-  src: "featured-image.png"
+  src: "cover.png"
 
 tags: ["react", "frontend", "webpack"]
 categories: ["frontend"]

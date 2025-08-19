@@ -1,5 +1,5 @@
 ---
-weight: 3
+weight: 2
 title: "Understanding Dev Proxy: Bridging Local Development and Online Environments"
 date: 2022-08-22T15:37:27+08:00
 lastmod: 2022-08-22T15:37:27+08:00
@@ -8,7 +8,7 @@ author: "Christine Li"
 images: []
 resources:
 - name: "featured-image"
-  src: "featured-image.png"
+  src: "cover.png"
 
 tags: ["react", "frontend", "micro-frontend architecture", "proxy"]
 categories: ["frontend"]

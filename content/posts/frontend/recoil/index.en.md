@@ -1,5 +1,5 @@
 ---
-weight: 7
+weight: 3
 title: "Recoil - A New State Management Library for React"
 date: 2023-06-28T22:30:09+08:00
 lastmod: 2023-06-28T22:30:09+08:00
@@ -8,7 +8,7 @@ author: "Christine Li"
 images: []
 resources:
 - name: "featured-image"
-  src: "recoil2.jpg"
+  src: "cover1.png"
 
 tags: ["react", "frontend", "micro-frontend architecture", "proxy"]
 categories: ["frontend"]

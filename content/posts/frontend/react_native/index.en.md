@@ -1,6 +1,6 @@
 ---
-weight: 2
-title: "A Quick Look into React Native Principles"
+weight: 3
+title: "A Quick Look Into How React Native Works"
 date: 2022-06-20T08:29:32+08:00
 lastmod: 2022-06-20T08:29:32+08:00
 draft: false
@@ -8,7 +8,7 @@ author: "Christine Li"
 images: []
 resources:
 - name: "featured-image"
-  src: "featured-image.png"
+  src: "cover1.png"
 
 tags: ["react", "react native", "frontend"]
 categories: ["frontend"]

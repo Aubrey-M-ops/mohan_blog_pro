@@ -1,5 +1,5 @@
 ---
-weight: 6
+weight: 2
 title: "Garfish: A Micro Frontend Framework"
 date: 2023-06-27T19:22:10+08:00
 lastmod: 2023-06-27T19:22:10+08:00
@@ -8,7 +8,7 @@ author: "Christine Li"
 images: []
 resources:
 - name: "featured-image"
-  src: "featured-image.png"
+  src: "cover.png"
 
 tags: ["react", "frontend", "micro-frontend architecture", "proxy"]
 categories: ["frontend"]
