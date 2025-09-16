@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://limohan.me/'
 languageCode = 'en-us'
 title = 'Christine Li'
 theme = "LoveIt"
@@ -391,7 +391,7 @@ enableEmoji = true
     noClasses = false
 
 [params.social]
-  Github = "https://github.com/Aubrey-M-ops"
+  Github = "Aubrey-M-ops"
   Email = "mohanli202409@gmail.com"
   Linkedin = "mohan-li-370644368/"
 
@@ -436,7 +436,7 @@ enableEmoji = true
         title = ""
     [languages.en.params]
       [languages.en.params.search]
-        enable = true
+        enable = false
         type = "algolia"
         contentLength = 4000
         placeholder = ""

@@ -25,7 +25,7 @@ What is memo, useMemo, useCallback? and When to use them?
 
 # React - memo, useMemo, useCallback
 
-React 中当组件的 props 或 state 变化时，会重新渲染，实际开发会遇到不必要的渲染场景。比如： 父组件：
+In React, when the component's props or state changes, it will re-render. In actual development, we will encounter scenarios of unnecessary rendering. For example: the parent component:
 
 ```JavaScript
 import { useState } from "react";
@@ -35,35 +35,37 @@ export const Parent = () => {
   const [count, setCount] = useState(0);
 
   return (
-    <div><button onClick={()=>setCount(count + 1)}>点击次数：{count}</button>
+    <div><button onClick={()=>setCount(count + 1)}>Click count: {count}</button>
         <Child />
     </div>
   );
 };
 ```
 
-useState会在每次值更新的时候渲染，每次`count`变化时，父组件重新渲染，会导致<Child />也重新渲染， **那么如何让父组件的渲染不影响子组件呢？🧐**
+useState will re-render whenever the value updates. Every time `count` changes, the parent component re-renders, which causes `<Child />` to re-render as well.
+**So how do we prevent the parent component's render from affecting the child component? 🧐**
 
 # React.memo()
 
-在上述情况下，可以使用React.memo()将子元素包住。`React.memo`用来缓存组件的渲染，避免不必要的更新。因为，React.memo 是对组件进行 “记忆”，**当它接收的 props 没有发生改变的时候，那么它将返回上次渲染的结果，不会重新执行函数返回新的渲染结果**。
+In the above case, you can use React.memo() to wrap the child element. `React.memo` is used to cache component renders and avoid unnecessary updates. Because React.memo “remembers” the component, **when the props it receives haven't changed, it will return the last rendered result and won't re-execute the function to return a new render result**.
 
 ```JavaScript
 import { memo } from "react";
 
 export const Child = memo(() => {
-  console.log("渲染了");
-  return <div>子组件</div>;
+  console.log("Rendered");
+  return <div>Child Component</div>;
 });
 ```
 
-尤其在项目里，当依赖比较多的时候，会经常触发重新渲染组件，这时候可以将子组件都用memo()包住，减少不必要的重新渲染，之前遇到过一个例子，在渲染长列表时，由于没有使用memo()，每做一个操作整个列表都会闪一下，这种时候甚至会影响到直观效果展示。
+Especially in projects where there are many dependencies, components are often re-rendered. In these cases, you can wrap the child components with memo() to reduce unnecessary renders. I've encountered an example before where rendering a long list without using memo() caused the entire list to flicker on every operation. In such situations, it can even affect visual performance.
 
-> ❗️上面的例子中，父组件只是简单调用子组件，并未给子组件传递任何属性
+> ❗️In the above example, the parent component simply calls the child component and does not pass any props.
 
-那如果传入属性呢？
+What if we pass in props?
 
-上面我们也说到，这种不变依赖于“props不变”， 但是当传入子组件的props变化的时候子组件就会重新渲染，**但如果传入的只是一个函数呢**？**这时候是没有必要让子组件渲染一遍的**。比如：
+As mentioned above, this optimization depends on “unchanged props.” But if the props passed to the child component change, the child component will re-render.
+**But what if the passed prop is just a function?** **In this case, it's unnecessary to re-render the child component.** For example:
 
 ```JavaScript
 import { useState } from "react";
@@ -71,7 +73,7 @@ import { Child } from "./child";
 
 export const Parent = () => {
   const [count, setCount] = useState(0);
-  const [name, setName] = useState("小明");
+  const [name, setName] = useState("Xiao Ming");
   const increment = () => setCount(count + 1);
 
   const onClick = (name: string) => {
@@ -80,26 +82,26 @@ export const Parent = () => {
 
   return (
     <div>
-        <button onClick={increment}>点击次数：{count}</button>
+        <button onClick={increment}>Click count: {count}</button>
         <Child name={name} onClick={onClick} />
     </div>
   );
 };
 ```
 
-如果传递的是函数，子组件还是会重新渲染。
+If a function is passed, the child component will still re-render.
 
-父组件向子组件传递函数，父组件重新渲染时，**会重新创建 onClick 函数**，即传给子组件的 onClick 属性发生了变化，导致子组件渲染
+When a parent component passes a function to a child component, the parent re-renders and **recreates the onClick function**, which means the `onClick` prop passed to the child has changed, causing the child component to re-render.
 
-那么这时候如何解决呢？这时候就用到useCallBack！
+So how to solve this? This is where useCallback comes in!
 
 # React.useCallback()
 
-把回调函数及依赖项数组作为参数传入 `useCallback`，它将返回该回调函数的`memoized回调函数`，该回调函数**仅在某个依赖项改变时才会更新**。
+Pass a callback function and a dependency array to `useCallback`, and it will return a `memoized callback function`, which **only updates when one of its dependencies changes**.
 
-> `memoized`回调函数: 使用一组参数初次调用函数时，缓存参数和计算结果，当再次使用相同的参数调用该函数时，直接返回相应的缓存结果。
+> `memoized` callback function: When a function is first called with a set of parameters, it caches the parameters and computation result. When the function is called again with the same parameters, it directly returns the cached result.
 
-可以将onClick用useCallBack包裹一下
+We can wrap `onClick` with useCallback:
 
 ```JavaScript
  const onClick = useCallback((name: string) => {
@@ -107,11 +109,11 @@ export const Parent = () => {
   }, []);
 ```
 
-这时即使父组件重新渲染，子组件也不会被重新渲染了。
+At this point, even if the parent component re-renders, the child component will not re-render.
 
-那如果传递一个对象呢？
+What if we pass an object?
 
-假设变成这样：
+Suppose it becomes like this:
 
 ```JavaScript
 import { useCallback, useState } from "react";
@@ -119,42 +121,36 @@ import { Child } from "./child";
 
 export const Parent = () => {
   const [count, setCount] = useState(0);
-  // const [userInfo, setUserInfo] = useState({ name: "小明", age: 18 });const increment = () => setCount(count + 1);
-  const userInfo = { name: "小明", age: 18 };
+  // const [userInfo, setUserInfo] = useState({ name: "Xiao Ming", age: 18 });const increment = () => setCount(count + 1);
+  const userInfo = { name: "Xiao Ming", age: 18 };
 
   return (
     <div>
-        <button onClick={increment}>点击次数：{count}</button>
+        <button onClick={increment}>Click count: {count}</button>
         <Child userInfo={userInfo} />
     </div>
   );
 };
 ```
 
-这时的结果是，父组件渲染，`const userInfo = { name: "小明", age: 18 };` 一行会重新生成一个新对象，导致传递给子组件的 userInfo 属性值变化，进而导致子组件重新渲染。
+In this case, the parent component re-renders, and the line `const userInfo = { name: "Xiao Ming", age: 18 };` creates a new object, causing the `userInfo` prop passed to the child component to change, which in turn causes the child component to re-render.
 
-如果传入一个不会变的对象，子组件还是会重新渲染。
+Even if we pass in a constant object, the child component will still re-render.
 
-useMemo就是为了解决这个问题而生，可以理解为useMemo是对象版的useCallBack
+useMemo was created to solve this exact problem. You can think of useMemo as the object version of useCallback.
 
 # React.useMemo()
 
-可以将useMemo把这个对象包裹一下
+We can wrap the object with useMemo:
 
 ```JavaScript
-const userInfo = useMemo(() => ({ name: "小明", age: 18 }), []);
+const userInfo = useMemo(() => ({ name: "Xiao Ming", age: 18 }), []);
 ```
 
-useMemo()返回一个 memoized 值。把“创建”函数和依赖项数组作为参数传入 `useMemo`，它仅会在某个依赖项改变时才重新计算 memoized 值。
+useMemo() returns a memoized value. You pass a “creator” function and a dependency array to `useMemo`, and it only recalculates the memoized value when a dependency changes.
 
-此时父组件渲染也不会导致子组件重新渲染了。
+At this point, the parent re-rendering will no longer cause the child component to re-render.
 
-传入 `useMemo` 的函数会在渲染期间执行，不可以在这个函数内部执行与渲染无关的操作，诸如副作用这类的操作属于 `useEffect` 的适用范畴，而不是 `useMemo`。
+The function passed to `useMemo` executes during render, and you **should not** perform side effects in this function — such side effects are the domain of `useEffect`, not `useMemo`.
 
-- 如果没有提供依赖项数组，`useMemo` 在每次渲染时都会计算新的值。
-
-# 简单总结
-
-在子组件不需要父组件的值和函数的情况下，只需要使用memo函数包裹子组件即可。
-
-而在使用值和函数的情况，需要考虑有函数传递给子组件则使用useCallback，传入的值有所依赖的依赖项则使用useMemo, **而不是盲目使用这些hooks。**
+* If no dependency array is provided, `useMemo` will calculate a new value on every render.
