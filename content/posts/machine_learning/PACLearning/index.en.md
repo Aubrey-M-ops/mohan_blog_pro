@@ -19,7 +19,7 @@ toc:
   auto: false
 ---
 
-Recoil is a new state management library for React. It lets components share and manage state easily without pulling in heavy tools like Redux.
+PAC Learning is a theoretical framework that guarantees you can learn a hypothesis that is almost correct (error ≤ ε) with high probability (≥ 1 − δ) using a feasible number of training samples.
 
 <!--more-->
 
