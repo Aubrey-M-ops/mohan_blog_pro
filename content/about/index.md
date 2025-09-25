@@ -32,9 +32,9 @@ xxx(xxx...)
 
 {{< /style >}}
 
-## Working Experience
+## 💻 Working Experience
 
-### TikTok (2022.5 - 2022.11)
+#### TikTok (2022.5 - 2022.11)
 
 > `TikTok` is one of the world's most popular apps, with over 1 billion active users globally each month.
 
@@ -45,7 +45,7 @@ xxx(xxx...)
 
 
 
-### Meituan (2022.11-2023.2) (2023.7-2024.7)
+#### Meituan (2022.11-2023.2) (2023.7-2024.7)
 
 > Meituan is `China’s largest local services platform`, with over `400 million` monthly active users, effectively dominating the food delivery, hotel booking, and local services market.
 
@@ -61,13 +61,13 @@ xxx(xxx...)
 
 
 
-{{< style ".masonry-gallery { column-count: 4; column-gap: 1rem; margin: 2rem 0; } .masonry-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; } .masonry-item:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); } .masonry-item img { width: 100%; height: auto; display: block; } .masonry-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; transform: translateY(100%); transition: transform 0.3s ease; } .masonry-item:hover .masonry-overlay { transform: translateY(0); } .masonry-date { font-size: 12px; color: #fff; font-family: monospace; margin-bottom: 0.3rem; } .masonry-desc { font-size: 11px; color: #ddd; font-family: sans-serif; line-height: 1.3; } @media (max-width: 768px) { .masonry-gallery { column-count: 2; } } @media (max-width: 480px) { .masonry-gallery { display: flex; column-count: unset; overflow-x: auto; overflow-y: hidden; gap: 1rem; padding: 1rem 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; } .masonry-gallery::-webkit-scrollbar { display: none; } .masonry-item { flex: 0 0 250px; margin-bottom: 0; } .masonry-item img { height: 200px; object-fit: cover; } }" >}}
+{{< style ".masonry-gallery { column-count: 4; column-gap: 1rem; margin: 2rem 0; } .masonry-item { break-inside: avoid; margin-bottom: 1rem; position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; } .masonry-item:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); } .masonry-item img { width: 100%; height: auto; display: block; } .masonry-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 1.2rem; transform: translateY(100%); transition: transform 0.3s ease; } .masonry-item:hover .masonry-overlay { transform: translateY(0); } .masonry-date { font-size: 14px; color: #fff; font-family: monospace; margin-bottom: 0.4rem; } .masonry-desc { font-size: 13px; color: #ddd; font-family: sans-serif; line-height: 1.4; } @media (max-width: 768px) { .masonry-gallery { column-count: 2; } } @media (max-width: 480px) { .masonry-gallery { display: flex; column-count: unset; overflow-x: auto; overflow-y: hidden; gap: 0.8rem; padding: 1rem 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; } .masonry-gallery::-webkit-scrollbar { display: none; } .masonry-item { flex: 0 0 220px; margin-bottom: 0; } .masonry-item img { height: 180px; object-fit: cover; } }" >}}
 
 {{< masonry_gallery dir="images/working" limit="50" data="about_images" columns="4" >}}
 
 {{< /style >}}
 
-## My Growth Journey
+## ✏️ My Growth Journey
 
 I really like what Natsuki said to Takumi in Initial D:
 > “What matters most is finding a world that belongs to you.” ✨
