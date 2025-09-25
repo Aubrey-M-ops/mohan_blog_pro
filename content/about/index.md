@@ -25,10 +25,16 @@ math:
 
 ## Hello! 👋
 
-I'm `Christine (Mohan) Li`, a developer passionate about technology and learning.
+I'm `Christine (Mohan) Li`.
+- I’m a **software engineer** with **2+ years** of experience in **frontend** and **full-stack development** at large-scale internet companies, where I’ve delivered high-impact projects with a bug rate as low as **0.01%**.  
 
-Here, I share my insights and experiences in areas like front-end development and machine learning. I hope you find something helpful along the way.
-xxx(xxx...)
+- I also enjoy creating **efficiency tools** and **CLI utilities** that streamline workflows and make development **faster** and **smoother** across teams.
+
+---
+
+☕️ I believe that coding can change lives, and programmers are engineers who create the future.📸
+
+---
 
 {{< /style >}}
 
