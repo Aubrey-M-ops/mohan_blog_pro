@@ -5,7 +5,7 @@ lastmod: 2024-08-21T09:00:00+08:00
 draft: false
 author: "Christine Li"
 description: "About Christine Li and this blog"
-images: ["fachou.jpg"]
+images: [""]
 
 tags: ["about", "personal"]
 categories: ["about"]
@@ -19,13 +19,13 @@ math:
   enable: true
 ---
 
-{{< style "img { width: 350px; height: 350px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .about-text { flex: 1; padding-top: 1rem; }" >}}
+{{< style "img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .about-text { flex: 1; padding-top: 1rem; }" >}}
 
-![Christine(Mohan) Li](about_avatar.jpg "Christine(Mohan) Li")
+![Christine(Mohan) Li](about_avatar4.jpg "Christine(Mohan) Li")
 
 ## Hello! 👋
 
-I'm Christine (Mohan) Li, a developer passionate about technology and learning.
+I'm `Christine (Mohan) Li`, a developer passionate about technology and learning.
 
 Here, I share my insights and experiences in areas like front-end development and machine learning. I hope you find something helpful along the way.
 xxx(xxx...)
