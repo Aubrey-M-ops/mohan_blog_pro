@@ -5,7 +5,7 @@ lastmod: 2024-08-21T09:00:00+08:00
 draft: false
 author: "Christine Li"
 description: "About Christine Li and this blog"
-images: [""]
+images: ["preview.jpg"]
 
 tags: ["about", "personal"]
 categories: ["about"]
