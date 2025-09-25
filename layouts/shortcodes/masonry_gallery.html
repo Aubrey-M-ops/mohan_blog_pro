@@ -1,0 +1,29 @@
+{{/* params: dir, limit, data (data file key), columns */}}
+{{- $dir := .Get "dir" | default "images/working" -}}
+{{- $limit := (.Get "limit" | default 50) | int -}}
+{{- $dataKey := .Get "data" | default "about_images" -}}
+{{- $columns := (.Get "columns" | default 4) | int -}}
+
+{{- $rootDir := printf "static/%s" $dir -}}
+{{- $files := readDir $rootDir -}}
+{{- $descriptions := (index site.Data $dataKey) | default dict -}}
+
+<div class="masonry-gallery" data-columns="{{ $columns }}">
+  {{- if not $files -}}
+    <div class="masonry-item">
+      <div class="desc-label">No images found in {{ $rootDir }}</div>
+    </div>
+  {{- else -}}
+    {{- range first $limit $files -}}
+      {{- $filename := .Name -}}
+      {{- $basename := replace $filename (path.Ext $filename) "" -}}
+      <div class="masonry-item">
+        <img src="{{ printf "/%s/%s" $dir $filename | safeURL }}" alt="gallery image" loading="lazy">
+        <div class="masonry-overlay">
+          <div class="masonry-date">{{ $basename }}</div>
+          <div class="masonry-desc">{{ with index $descriptions $basename }}{{ . }}{{ end }}</div>
+        </div>
+      </div>
+    {{- end -}}
+  {{- end -}}
+</div>
