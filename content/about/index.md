@@ -69,8 +69,9 @@ I really like what Natsuki said to Takumi in Initial D:
 
 **I think I’ve found mine.🌃**
 
-{{< style ".carousel-container { width: 100%; max-width: 900px; margin: 2rem auto; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); position: relative; } .carousel-wrapper { display: flex; animation: continuousScroll 10s linear infinite; will-change: transform; } .carousel-item { width: 280px; margin-right: 1rem; flex-shrink: 0; text-align: center; } .carousel-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; display: block; } .carousel-item .date-label { font-size: 14px; color: #666; margin-top: 0.5rem; font-family: monospace; } .carousel-item .desc-label { font-size: 13px; color: #888; margin-top: 0.3rem; font-family: sans-serif; font-style: italic; line-height: 1.3; } @keyframes continuousScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } .carousel-container:hover .carousel-wrapper { animation-play-state: paused; }" >}}
+{{< style ".carousel-container { width: 100%; max-width: 900px; margin: 2rem auto; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); position: relative; } .carousel-wrapper { display: inline-flex; flex-wrap: nowrap; gap: 1rem; animation: continuousScroll 100s linear infinite; will-change: transform; } .carousel-item { flex: 0 0 auto; width: 280px; text-align: center; } .carousel-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; display: block; } .carousel-item .date-label { font-size: 14px; color: #666; margin-top: 0.5rem; font-family: monospace; } .carousel-item .desc-label { font-size: 13px; color: #888; margin-top: 0.3rem; font-family: sans-serif; font-style: italic; line-height: 1.3; } @keyframes continuousScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } } .carousel-container:hover .carousel-wrapper { animation-play-state: paused; }" >}}
 
 {{< about_carousel dir="images/about" limit="30" data="about_images" >}}
 
 {{< /style >}}
+

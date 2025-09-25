@@ -5,39 +5,36 @@
 
 {{- $rootDir := printf "static/%s" $dir -}}
 {{- $files := readDir $rootDir -}}
+
+{{- $images := slice -}}
+{{- range $files -}}
+  {{- $name := .Name -}}
+  {{- if findRE `(?i)\.(jpe?g|png|webp|gif)$` $name -}}
+    {{- $images = $images | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $imageList := first $limit $images -}}
 {{- $descriptions := (index site.Data $dataKey) | default dict -}}
 
 <div class="carousel-container">
   <div class="carousel-wrapper">
-    {{- if not $files -}}
+    {{- if not $imageList -}}
       <div class="carousel-item">
-        <div class="desc-label">No images found in {{ $rootDir }}</div>
+        <div class="desc-label">No valid images found in {{ $rootDir }}</div>
       </div>
     {{- else -}}
-      {{- $imageList := first $limit $files -}}
-      {{- range $imageList -}}
-        {{- $filename := .Name -}}
-        {{- $basename := replace $filename (path.Ext $filename) "" -}}
-        <div class="carousel-item">
-          <img src="{{ printf "/%s/%s" $dir $filename | safeURL }}" alt="carousel image">
-          <div class="date-label">{{ $basename }}</div>
-          <div class="desc-label">{{ with index $descriptions $basename }}{{ . }}{{ end }}</div>
-        </div>
-      {{- end -}}
-      {{- range $imageList -}}
+      {{- range seq 1 2 }} <!-- Two loops for seamless scroll -->
         {{- range $imageList -}}
-  {{- $filename := .Name -}}
-  <p>{{ $filename }}</p>
-{{- end -}}
-        {{- $filename := .Name -}}
-        {{- $basename := replace $filename (path.Ext $filename) "" -}}
-        <div class="carousel-item">
-          <img src="{{ printf "/%s/%s" $dir $filename | safeURL }}" alt="carousel image">
-          <div class="date-label">{{ $basename }}</div>
-          <div class="desc-label">{{ with index $descriptions $basename }}{{ . }}{{ end }}</div>
-        </div>
+          {{- $filename := .Name -}}
+          {{- $basename := replace $filename (path.Ext $filename) "" -}}
+          <div class="carousel-item">
+            <img src="{{ printf "/%s/%s" $dir $filename | safeURL }}" alt="carousel image" onerror="this.style.display='none'">
+            <div class="date-label">{{ $basename }}</div>
+            <div class="desc-label">{{ with index $descriptions $basename }}{{ . }}{{ end }}</div>
+          </div>
+        {{- end -}}
       {{- end -}}
     {{- end -}}
-    
   </div>
 </div>
