@@ -21,7 +21,7 @@ math:
 
 {{< style "img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .about-text { flex: 1; padding-top: 1rem; }" >}}
 
-![Christine(Mohan) Li](about_avatar4.jpg "Christine(Mohan) Li")
+![Christine(Mohan) Li](about_avatar4.jpg " ")
 
 ## Hello! 👋
 
