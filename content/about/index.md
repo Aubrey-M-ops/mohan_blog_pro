@@ -19,6 +19,8 @@ math:
   enable: true
 ---
 
+<link rel="preload" as="image" href="/images/about_avatar.jpg">
+
 {{< style "img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .about-text { flex: 1; padding-top: 1rem; }" >}}
 
 ![Christine(Mohan) Li](/images/about_avatar.jpg " ")
@@ -26,7 +28,7 @@ math:
 ## Hello! 👋
 
 I'm `Christine (Mohan) Li`.
-- I’m a **software engineer** with **2+ years** of experience in **frontend** and **full-stack development** at large-scale internet companies, where I’ve delivered high-impact projects with a bug rate as low as **0.01%**.  
+- I’m a **software engineer** with **3+ years** of experience in **frontend** and **full-stack development** at large-scale internet companies, where I’ve delivered high-impact projects with a bug rate as low as **0.01%**.  
 
 - I also enjoy creating **efficiency tools** and **CLI utilities** that streamline workflows and make development **faster** and **smoother** across teams.
 
