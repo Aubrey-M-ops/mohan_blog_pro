@@ -4,11 +4,11 @@ title: "Recoil - A New State Management Library for React"
 date: 2023-06-28T22:30:09+08:00
 lastmod: 2023-06-28T22:30:09+08:00
 draft: false
-author: "Christine Li"
+author: "Mohan Li"
 images: []
 resources:
-- name: "featured-image"
-  src: "cover1.png"
+  - name: "featured-image"
+    src: "cover1.png"
 
 tags: ["react", "frontend", "micro-frontend architecture", "proxy"]
 categories: ["frontend"]
@@ -37,9 +37,9 @@ The main application scenario of Context is when many **components of different 
 
 If A1B1 depends on Provider1, A2B2 depends on Provider2... (ensuring each group of providers is separate, otherwise one change will cause a full re-render).
 
-* Context can indeed achieve sharing, but the problem is you don’t know exactly how many there are 🥲
-* If you want to insert a node, it will change the tree structure, and React will unmount and remount the entire tree (too costly).
-* Leaf nodes are coupled with root nodes, making code difficult to split.
+- Context can indeed achieve sharing, but the problem is you don’t know exactly how many there are 🥲
+- If you want to insert a node, it will change the tree structure, and React will unmount and remount the entire tree (too costly).
+- Leaf nodes are coupled with root nodes, making code difficult to split.
 
 ## Introduction to Recoil
 
@@ -52,8 +52,6 @@ Continuing from the above, suppose we flatten this tree onto a table, and then c
 This time, for each item (A1 & B1, A2 & B2 ...), we create a state floating in the air. For example, when state1 updates, A1B1 updates; when state2 updates, A2B2 updates, and so on...
 
 ![recoil2](recoil2.jpg)
-
-
 
 In this way, each item corresponds to its own state, and when this state changes, the corresponding item re-renders.
 
@@ -102,9 +100,9 @@ A selector is a pure function: **given the same input, it always produces the sa
 
 When the state that a selector depends on changes, this pure function is recalculated, and related components are re-rendered. In fact, subscribing to a selector is equivalent to subscribing to the atoms inside the selector.
 
-* When the selector updates, the selector function is re-executed.
-* get (read): When dependent states update, get also updates.
-* set (write): Optionally returns a function for writable state (sets state).
+- When the selector updates, the selector function is re-executed.
+- get (read): When dependent states update, get also updates.
+- set (write): Optionally returns a function for writable state (sets state).
 
 > ❗️Only selectors that have both get and set can be readable and writable.
 
@@ -128,9 +126,9 @@ const fontSizeLabelState = selector({
 
 Selectors support async.
 
-* Just let the get function return a promise.
-* Identical inputs will not be queried again; only one query is made for the same input.
-* Whenever a dependency changes, the selector is recalculated and a new query is executed. If async dependencies haven’t changed, the async function is not re-executed, and cached values are returned directly. (This is why selectors need to be pure functions.)
+- Just let the get function return a promise.
+- Identical inputs will not be queried again; only one query is made for the same input.
+- Whenever a dependency changes, the selector is recalculated and a new query is executed. If async dependencies haven’t changed, the async function is not re-executed, and cached values are returned directly. (This is why selectors need to be pure functions.)
 
 ```JavaScript
 const asyncDataState = selector({
@@ -184,23 +182,23 @@ Split state into individual atoms
 
 > When an atom updates, only the changed atom and its downstream nodes, along with the components subscribed to them, will update.
 
-Using Recoil creates a data flow graph for you, from *atom* (shared state) to *selector* (pure functions), and then flowing into React components.
+Using Recoil creates a data flow graph for you, from _atom_ (shared state) to _selector_ (pure functions), and then flowing into React components.
 
 ### Related Hooks
 
-* useRecoilValue(): read operation on Atom/Selector
+- useRecoilValue(): read operation on Atom/Selector
 
 ```JavaScript
 const todoList = useSetRecoilValue(todoListState);
 ```
 
-* useSetRecoilState(): write operation on Atom/Selector (requires selector with write operation)
+- useSetRecoilState(): write operation on Atom/Selector (requires selector with write operation)
 
 ```JavaScript
 const setTodoList = useSetRecoilState(todoListState);
 ```
 
-* useRecoilState(): read/write operation on Atom/Selector (requires selector with write operation)
+- useRecoilState(): read/write operation on Atom/Selector (requires selector with write operation)
 
 ```JavaScript
 const [todoList, setTodoList] = useSetRecoilState(todoListState);

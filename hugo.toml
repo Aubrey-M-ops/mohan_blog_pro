@@ -1,6 +1,6 @@
 baseURL = 'https://limohan.me/'
 languageCode = 'en-us'
-title = 'Christine Li'
+title = 'Mohan Li'
 theme = "LoveIt"
 # language name ["English", "简体中文", "Français", "Polski", ...]
 languageName = "English"
@@ -76,7 +76,7 @@ enableEmoji = true
   dateFormat = "2006-01-02"
   # website title for Open Graph and Twitter Cards
   # 网站标题, 用于 Open Graph 和 Twitter Cards
-  title = "Christine Li"
+  title = "Mohan Li"
   # website description for RSS, SEO, Open Graph and Twitter Cards
   # 网站描述, 用于 RSS, SEO, Open Graph 和 Twitter Cards
   description = "Always Growing..."
@@ -86,7 +86,7 @@ enableEmoji = true
 
 
   [params.author]
-    name = "Christine Li"
+    name = "Mohan Li"
     email = "mohanli202409@gmail.com"
     link = ""
 
@@ -169,7 +169,7 @@ enableEmoji = true
   [params.app]
     # optional site title override for the app when added to an iOS home screen or Android launcher
     # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
-    title = "Christine Li"
+    title = "Mohan Li"
     # whether to omit favicon resource links
     # 是否隐藏网站图标资源链接
     noFavicon = false
@@ -225,7 +225,7 @@ enableEmoji = true
       avatarURL = "https://raw.githubusercontent.com/Aubrey-M-ops/Aubrey-M-ops.github.io/refs/heads/master/avatar.jpg"
       # title shown in home page (HTML format is supported)
       # 主页显示的网站标题 (支持 HTML 格式)
-      title = "Christine Li"
+      title = "Mohan Li"
       # subtitle shown in home page (HTML format is supported)
       # 主页显示的网站副标题 (允许 HTML 格式)
       subtitle = "Don't go gentle into that good night. 🌠"

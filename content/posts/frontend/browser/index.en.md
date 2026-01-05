@@ -4,11 +4,11 @@ title: "Browser Working Principles"
 date: 2023-03-27T13:44:28+08:00
 lastmod: 2023-03-27T13:44:28+08:00
 draft: false
-author: "Christine Li"
+author: "Mohan Li"
 images: []
 resources:
-- name: "featured-image"
-  src: "cover.png"
+  - name: "featured-image"
+    src: "cover.png"
 
 tags: ["frontend", "working notes"]
 categories: ["frontend"]
@@ -19,16 +19,13 @@ toc:
   auto: false
 ---
 
-
 a structured summary of the **core principles of how browsers work**—from processes and threads, to caching and storage, to what really happens when a page is rendered.
-
 
 <!--more-->
 
-
 # Browser Working Principles
 
-------
+---
 
 ## 1. Browser Processes and Threads
 
@@ -73,7 +70,7 @@ The JS engine is single-threaded, and if JS execution time is too long, it will 
 - **`DOMContentLoaded`** —— The browser has fully loaded HTML and constructed the DOM tree, but external resources like `<img>` and CSS may not be fully loaded yet.
 - **`load`** —— The browser has not only loaded the HTML but also all external resources: images, styles, etc.
 
-------
+---
 
 ## 2. Caching Mechanism
 
@@ -102,12 +99,12 @@ Browser caching is divided into: **Strong Cache** and **Negotiated Cache**.
 3. If not in disk either, proceed with **network request**.
 4. The requested resources will be cached in both disk and memory.
 
-------
+---
 
 ## 3. Storage Mechanism
 
 Common browser storage methods: **Cookie, sessionStorage, localStorage**.
- Commonality: all stored on the browser side, and same-origin (same protocol, port, host).
+Commonality: all stored on the browser side, and same-origin (same protocol, port, host).
 
 ### Cookie
 
@@ -145,7 +142,7 @@ Encoding method: `encodeURI()`.
 ### Cookie vs Session
 
 **Why needed?**
- HTTP protocol is stateless and cannot distinguish sessions.
+HTTP protocol is stateless and cannot distinguish sessions.
 
 - Cookie: stores session id.
 - Session: data stored on the server side, consuming server resources.
@@ -190,7 +187,7 @@ Usage scenarios:
 - Small systems with few users: cookie/session is simpler.
 - Large-scale/distributed systems: recommend token (JWT).
 
-------
+---
 
 ## 4. BOM (Browser Object Model)
 
@@ -209,7 +206,7 @@ Common objects:
   - `history.back()` —— go back one page.
   - `history.forward()` —— go forward one page.
 
-------
+---
 
 ## 5. From Entering URL to Page Rendering
 

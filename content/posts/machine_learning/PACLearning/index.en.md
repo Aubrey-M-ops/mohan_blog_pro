@@ -4,7 +4,7 @@ title: "PAC Learning"
 date: 2025-09-17T22:22:12+08:00
 lastmod: 2025-09-17T22:22:12+08:00
 draft: false
-author: "Christine Li"
+author: "Mohan Li"
 images: []
 resources:
   - name: "featured-image"

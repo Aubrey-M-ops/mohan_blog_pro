@@ -4,11 +4,11 @@ title: "React - memo, useMemo, useCallback"
 date: 2022-06-06T21:29:01+08:00
 lastmod: 2022-06-06T21:29:01+08:00
 draft: false
-author: "Christine Li"
+author: "Mohan Li"
 images: []
 resources:
-- name: "featured-image"
-  src: "cover.png"
+  - name: "featured-image"
+    src: "cover.png"
 
 tags: ["react", "frontend"]
 categories: ["frontend"]
@@ -153,4 +153,4 @@ At this point, the parent re-rendering will no longer cause the child component 
 
 The function passed to `useMemo` executes during render, and you **should not** perform side effects in this function — such side effects are the domain of `useEffect`, not `useMemo`.
 
-* If no dependency array is provided, `useMemo` will calculate a new value on every render.
+- If no dependency array is provided, `useMemo` will calculate a new value on every render.

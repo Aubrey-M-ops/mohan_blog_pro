@@ -4,11 +4,11 @@ title: "A Quick Look Into How React Native Works"
 date: 2022-06-20T08:29:32+08:00
 lastmod: 2022-06-20T08:29:32+08:00
 draft: false
-author: "Christine Li"
+author: "Mohan Li"
 images: []
 resources:
-- name: "featured-image"
-  src: "cover1.png"
+  - name: "featured-image"
+    src: "cover1.png"
 
 tags: ["react", "react native", "frontend"]
 categories: ["frontend"]
@@ -43,7 +43,7 @@ How JavaScript and the Virtual DOM work together with native rendering to enable
 - Experience and performance are worse than native applications
 - Difficult to optimize (usually involves modifying the browser kernel, with very limited improvements)
 
-------
+---
 
 ## Comparison: Web Development vs Native Development
 
@@ -52,7 +52,7 @@ How JavaScript and the Virtual DOM work together with native rendering to enable
 
 👉 Can we combine the advantages of Web development and Native development: **use dynamic languages to generate native views?** 🧐
 
-------
+---
 
 ## Core Principle
 
@@ -70,7 +70,7 @@ How JavaScript and the Virtual DOM work together with native rendering to enable
 
 > Put different base libraries in the Render! We only need to care about how to write the Virtual DOM.
 
-------
+---
 
 ## How the Browser Creates Views
 
@@ -80,30 +80,29 @@ Two ways to pass React elements into the `ReactDOM.render` method, rendering the
 
 ```javascript
 // case 1
-class App extends React.Component {
-}
-ReactDOM.render(<App />, document.getElementById("container"))
+class App extends React.Component {}
+ReactDOM.render(<App />, document.getElementById("container"));
 
 // case 2
-ReactDOM.render(<h1>Hello world</h1>, document.getElementById("container"))
+ReactDOM.render(<h1>Hello world</h1>, document.getElementById("container"));
 ```
 
 In React, an element is represented as an object:
 
 ```javascript
 var element = {
-    // This tag allows us to uniquely identify this as a React Element
-    $typeof: REACT_ELEMENT_TYPE,
-    
-    // built-in properties that belong on the element
-    type: type, // the type of this element
-    key: key,   // the identifier of this element
-    ref: ref,   // the reference of this element
-    props: props, // element’s properties (children means sub-elements)
-    
-    // Record the component responsible for creating this element
-    _owner: owner
-}
+  // This tag allows us to uniquely identify this as a React Element
+  $typeof: REACT_ELEMENT_TYPE,
+
+  // built-in properties that belong on the element
+  type: type, // the type of this element
+  key: key, // the identifier of this element
+  ref: ref, // the reference of this element
+  props: props, // element’s properties (children means sub-elements)
+
+  // Record the component responsible for creating this element
+  _owner: owner,
+};
 ```
 
 Converted form:
@@ -128,7 +127,7 @@ Converted form:
 }
 ```
 
-------
+---
 
 ### React Element Classification
 
@@ -145,7 +144,7 @@ Converted form:
 - `type` is a function constructor (Virtual DOM generator), provides custom UI and behavior
 - Rendering: create an instance with the constructor, run its render method to get a new element, then render it
 
-------
+---
 
 ### Renderer Workflow
 
@@ -156,16 +155,16 @@ For different types, the renderer provides different classes.
   #### Flow
 
   1. **Virtual DOM Element**
-      ↓
+     ↓
   2. **instantiateComponent**
-      ↓
+     ↓
   3. **Internal Component Instance**
-      ↓
+     ↓
   4. **Generate Real DOM Fragment**
-      ↓
+     ↓
   5. **Insert DOM Fragment into DOM Tree**
 
-  ------
+  ***
 
   #### Component Types
 
@@ -181,11 +180,9 @@ For different types, the renderer provides different classes.
   - `ReactNativeBaseComponent`
   - `ReactNativeCompositeComponent`
 
-  
-
   - For example, if it’s a text element → `ReactDOMTextComponent` in browser environment
 
-------
+---
 
 ### Example
 
@@ -193,28 +190,26 @@ Render the following React elements:
 
 ```javascript
 class App extends React.component {
-    render() {
-        return (   
-            <div>
-                <h1>Welcome Page</h1>
-                <Welcome name="Yaphet" />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>Welcome Page</h1>
+        <Welcome name="Yaphet" />
+      </div>
+    );
+  }
 }
 
 class Welcome extends React.Component {
-    render(){
-        return (
-            <h2>{this.props.name}</h2>
-        )
-    }
+  render() {
+    return <h2>{this.props.name}</h2>;
+  }
 }
 
-ReactDOM.render(<App/>, document.getElementById("container"))
+ReactDOM.render(<App />, document.getElementById("container"));
 ```
 
-------
+---
 
 Process:
 
@@ -229,7 +224,7 @@ Process:
 
 😍 **Summary**: In the browser, UI is created via **DOM API**.
 
-------
+---
 
 ## How Native Creates Views
 
@@ -254,9 +249,9 @@ JSValue *tripleFn = context[@"triple"]
 ```
 
 JS exposes functions/variables globally → Native can access them.
- Similarly, for JS to use Native, Native must also expose its functions/variables globally.
+Similarly, for JS to use Native, Native must also expose its functions/variables globally.
 
-------
+---
 
 ### React Native JS-Native Communication
 
@@ -270,14 +265,14 @@ In React Native, to avoid polluting the global context with too many modules:
 
 - JS → Native: also via an intermediate method calling the corresponding module
 
-------
+---
 
 ### JS Creates Native UI in React Native
 
 - Call **UI Manager** module’s `createView` method → pass parameters → create client-side view
 - **Styles** in React Native are represented by objects, passed as key/value pairs to Native, parsed and rendered by Native
 
-------
+---
 
 😍 **Summary**:
 

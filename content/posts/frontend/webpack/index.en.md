@@ -4,11 +4,11 @@ title: "A Practical Walkthrough of Webpack’s Core Concepts"
 date: 2023-01-17T18:34:11+08:00
 lastmod: 2023-01-17T18:34:11+08:00
 draft: false
-author: "Christine Li"
+author: "Mohan Li"
 images: []
 resources:
-- name: "featured-image"
-  src: "cover.png"
+  - name: "featured-image"
+    src: "cover.png"
 
 tags: ["react", "frontend", "webpack"]
 categories: ["frontend"]
@@ -43,7 +43,7 @@ When processing a program, Webpack internally builds a **dependency graph**, map
 
 ## **Webpack Build Process**
 
-> `webpack`’s running process is a serial process, and its workflow is *to connect various plugins together*. During its operation, it broadcasts events, and *plugins only need to listen to the events they care about* to join this `webpack` mechanism and change its behavior, giving the entire system good extensibility.
+> `webpack`’s running process is a serial process, and its workflow is _to connect various plugins together_. During its operation, it broadcasts events, and _plugins only need to listen to the events they care about_ to join this `webpack` mechanism and change its behavior, giving the entire system good extensibility.
 
 ### **Initialization Process**
 
@@ -91,7 +91,7 @@ module.exports = {
 - **Initialize options**: webpack copies each configuration item in `webpack.config.js` into the `options` object and loads user-configured `plugins`.
 - **Initialize Compiler object**, which controls the lifecycle of `webpack`. It does not perform specific tasks but coordinates operations.
 
-------
+---
 
 ### **Compilation Process**
 
@@ -108,7 +108,7 @@ module.exports = {
   - `make`: Analyze entry points and their dependent modules, create module objects
   - `build-module`: Build modules, **mainly calling configured loaders**, to transform modules into standard `JS` modules
 
-------
+---
 
 ### **Output Process**
 
@@ -124,7 +124,7 @@ output: {
 }
 ```
 
-------
+---
 
 ## **Loader and Plugin**
 
@@ -143,7 +143,7 @@ output: {
 ```JavaScript
 module.exports = {
   module: {
-    rules: [ 
+    rules: [
       {
         test: /\.css$/, // regex for matching
         use: [ // loaders to call
@@ -184,13 +184,13 @@ rules: [
 ]
 ```
 
-------
+---
 
 ### **Plugin**
 
 > - `Plugin` is a computer application that interacts with the main program to provide specific functionality.
 
-- Plugins *run at different stages* of webpack (hooks / lifecycle), *giving webpack flexible features* such as bundling optimization, resource management, environment variable injection, etc., aiming to solve problems loaders cannot.
+- Plugins _run at different stages_ of webpack (hooks / lifecycle), _giving webpack flexible features_ such as bundling optimization, resource management, environment variable injection, etc., aiming to solve problems loaders cannot.
 - A plugin is essentially a JavaScript object with an `apply` method. The parameter of `apply` is `compiler`, so the plugin can access all lifecycle hooks during compilation.
 
 ```JavaScript
@@ -207,7 +207,7 @@ class ConsoleLogOnBuildWebpackPlugin {
 module.exports = ConsoleLogOnBuildWebpackPlugin;
 ```
 
-------
+---
 
 ### **Difference Between Loader and Plugin**
 
@@ -224,11 +224,11 @@ module.exports = ConsoleLogOnBuildWebpackPlugin;
 - **Writing plugins**
   - Implement an object with an `apply` method that receives `compiler`
 
-------
+---
 
 ## **Webpack Hot Module Replacement**
 
-> - `HMR` stands for `Hot Module Replacement`, meaning hot swapping of modules. It allows replacing, adding, or removing modules during runtime *without refreshing the entire application*.
+> - `HMR` stands for `Hot Module Replacement`, meaning hot swapping of modules. It allows replacing, adding, or removing modules during runtime _without refreshing the entire application_.
 
 - Enable HMR:
 
@@ -252,4 +252,3 @@ if(module.hot){
     })
 }
 ```
-

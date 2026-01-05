@@ -4,11 +4,11 @@ title: "CSS Practical Guide"
 date: 2023-02-06T22:12:56+08:00
 lastmod: 2023-02-06T22:12:56+08:00
 draft: false
-author: "Christine Li"
+author: "Mohan Li"
 images: []
 resources:
-- name: "featured-image"
-  src: "cover.png"
+  - name: "featured-image"
+    src: "cover.png"
 
 tags: ["frontend", "working notes"]
 categories: ["frontend"]
@@ -19,34 +19,34 @@ toc:
   auto: false
 ---
 
-
 I wrote a CSS quick reference and principles note: from the box model, positioning and document flow, to BFC, layout schemes, performance optimization, and engineering.
-
 
 <!--more-->
 
-
 # CSS Knowledge System · More Practical, Clearer Notes
 
-
-------
+---
 
 ## 1) Box Model
 
 **Two kinds of box models:**
 
-| Mode           | `box-sizing`            | Meaning of the specified `width/height` | Actual footprint (total width/height)                        |
-| -------------- | ----------------------- | --------------------------------------- | ------------------------------------------------------------ |
-| Standard model | `content-box` (default) | `content` only                          | `content + padding + border (+ margin)`                      |
+| Mode           | `box-sizing`            | Meaning of the specified `width/height` | Actual footprint (total width/height)                         |
+| -------------- | ----------------------- | --------------------------------------- | ------------------------------------------------------------- |
+| Standard model | `content-box` (default) | `content` only                          | `content + padding + border (+ margin)`                       |
 | IE box model   | `border-box`            | `content + padding + border`            | `specified value (already includes padding/border)(+ margin)` |
 
 **Global recommendation: switch all elements to `border-box` for easier sizing:**
 
 ```css
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 ```
 
-------
+---
 
 ## 2) Document Flow & “Out of Flow”
 
@@ -58,7 +58,7 @@ I wrote a CSS quick reference and principles note: from the box model, positioni
 
 > `position: static` (default) does not participate in positioning; **`top/left` etc. have no effect on `static`**.
 
-------
+---
 
 ## 3) Pseudo-classes & Pseudo-elements
 
@@ -66,7 +66,7 @@ I wrote a CSS quick reference and principles note: from the box model, positioni
 
 Used to select elements in **specific states**:
 
-- Link states: `a:link / :visited / :hover / :active` 
+- Link states: `a:link / :visited / :hover / :active`
 - Structural: `:first-child / :last-child / :nth-child(n) / :nth-of-type(n)`
 - Interaction: `:focus / :focus-visible / :target / :disabled / :checked`
 - Selection helpers: `:not(...) / :is(...) / :where(...)` (`where` does not increase specificity)
@@ -80,7 +80,7 @@ Used to select **specific parts** of elements or **generate content**:
 - `::placeholder` input placeholder
 - `::selection` selected text style
 
-------
+---
 
 ## 4) Common Centering Methods
 
@@ -88,8 +88,9 @@ Used to select **specific parts** of elements or **generate content**:
 
 ```css
 .text-center {
-  text-align: center;              /* horizontal */
-  line-height: 40px; height: 40px; /* vertical for single-line text */
+  text-align: center; /* horizontal */
+  line-height: 40px;
+  height: 40px; /* vertical for single-line text */
 }
 ```
 
@@ -118,29 +119,32 @@ Used to select **specific parts** of elements or **generate content**:
 
 ```css
 .center {
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   margin: auto; /* needs constraints other than max-content or child has size */
 }
 /* or */
 .center {
-  position: absolute; top: 50%; left: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 ```
 
-------
+---
 
 ## 5) Differences in Hiding Elements
 
-| Method               | Takes space | Clickable/Focusable | Read by screen readers | Typical use                           |
-| -------------------- | ----------- | ------------------- | ---------------------- | ------------------------------------- |
-| `display: none`      | ❌ No        | ❌                   | Usually ❌              | Remove from layout/accessibility tree |
-| `visibility: hidden` | ✅ Yes       | ❌                   | Usually ❌              | Invisible but keeps space             |
-| `opacity: 0`         | ✅ Yes       | ✅ (still clickable) | ✅                      | Visual-only hide, keeps interaction   |
+| Method               | Takes space | Clickable/Focusable  | Read by screen readers | Typical use                           |
+| -------------------- | ----------- | -------------------- | ---------------------- | ------------------------------------- |
+| `display: none`      | ❌ No       | ❌                   | Usually ❌             | Remove from layout/accessibility tree |
+| `visibility: hidden` | ✅ Yes      | ❌                   | Usually ❌             | Invisible but keeps space             |
+| `opacity: 0`         | ✅ Yes      | ✅ (still clickable) | ✅                     | Visual-only hide, keeps interaction   |
 
 > If you need hidden **and non-clickable**, prefer `display: none` or `visibility: hidden`. For fade animations, use `opacity`.
 
-------
+---
 
 ## 6) BFC (Block Formatting Context)
 
@@ -164,13 +168,19 @@ Used to select **specific parts** of elements or **generate content**:
 
 ```css
 /* Modern: BFC directly */
-.parent { overflow: auto; }  /* or display: flow-root; */
+.parent {
+  overflow: auto;
+} /* or display: flow-root; */
 
 /* Classic clearfix */
-.parent::after { content: ""; display: table; clear: both; }
+.parent::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 ```
 
-------
+---
 
 ## 7) Responsive & Adaptive Solutions
 
@@ -181,13 +191,17 @@ Used to select **specific parts** of elements or **generate content**:
 ### Media queries `@media`
 
 ```css
-@media (max-width: 768px) { ... }
+@media (max-width: 768px) {
+  ...;
+}
 ```
 
 ### Viewport units `vh/vw` (and `svh/dvh` to adapt mobile safe-area changes)
 
 ```css
-.hero { min-height: 100svh; }
+.hero {
+  min-height: 100svh;
+}
 ```
 
 ### `rem` & fluid typography
@@ -196,7 +210,9 @@ Used to select **specific parts** of elements or **generate content**:
 - **Fluid typography** (recommended):
 
 ```css
-html { font-size: clamp(14px, 1.6vw, 18px); }
+html {
+  font-size: clamp(14px, 1.6vw, 18px);
+}
 ```
 
 ### Container queries (modern browsers)
@@ -204,11 +220,15 @@ html { font-size: clamp(14px, 1.6vw, 18px); }
 Switch styles based on **container width** instead of viewport:
 
 ```css
-.container { container-type: inline-size; }
-@container (min-width: 600px) { ... }
+.container {
+  container-type: inline-size;
+}
+@container (min-width: 600px) {
+  ...;
+}
 ```
 
-------
+---
 
 ## 8) Unit Comparison: `px / em / rem / vw / vh` (plus `ch / ex`)
 
@@ -219,7 +239,7 @@ Switch styles based on **container width** instead of viewport:
 - `ch`: width of the “0” glyph, good for code/table widths
 - `ex`: height of the lowercase `x` (rarely used)
 
-------
+---
 
 ## 9) CSS Specificity & Cascade
 
@@ -238,11 +258,15 @@ Switch styles based on **container width** instead of viewport:
 
 ```css
 @layer reset, base, components, utilities;
-@layer reset { /* lower priority */ }
-@layer components { /* higher than reset */ }
+@layer reset {
+  /* lower priority */
+}
+@layer components {
+  /* higher than reset */
+}
 ```
 
-------
+---
 
 ## 10) Style Isolation
 
@@ -251,7 +275,7 @@ Switch styles based on **container width** instead of viewport:
 - **Shadow DOM**: true isolation for Web Components (no leakage/contamination).
 - **Naming convention (BEM)**: `block__element--modifier` to reduce selector complexity.
 
-------
+---
 
 ## 11) Flexbox Essentials
 
@@ -274,12 +298,20 @@ Switch styles based on **container width** instead of viewport:
 **Common layout: two columns**
 
 ```css
-.container { display: flex; }
-.sidebar { width: 260px; flex: 0 0 260px; }
-.main { flex: 1 1 auto; min-width: 0; } /* prevent overflow */
+.container {
+  display: flex;
+}
+.sidebar {
+  width: 260px;
+  flex: 0 0 260px;
+}
+.main {
+  flex: 1 1 auto;
+  min-width: 0;
+} /* prevent overflow */
 ```
 
-------
+---
 
 ## 12) Grid Quick Use
 
@@ -303,7 +335,7 @@ Switch styles based on **container width** instead of viewport:
 }
 ```
 
-------
+---
 
 ## 13) Classic Layouts
 
@@ -319,10 +351,14 @@ Switch styles based on **container width** instead of viewport:
 **Sticky footer**
 
 ```css
-.wrapper { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; }
+.wrapper {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
 ```
 
-------
+---
 
 ## 14) Clearing Floats
 
@@ -330,10 +366,14 @@ Switch styles based on **container width** instead of viewport:
 - Clearfix:
 
 ```css
-.clearfix::after { content:""; display: table; clear: both; }
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 ```
 
-------
+---
 
 ## 15) Reflow & Repaint
 
@@ -348,7 +388,7 @@ Switch styles based on **container width** instead of viewport:
 4. Use `will-change: transform;` for frequently changing elements (use cautiously).
 5. Batch DOM changes in a document fragment, then insert once.
 
-------
+---
 
 ## 16) CSS Optimization (Engineering & Performance)
 
@@ -360,7 +400,7 @@ Switch styles based on **container width** instead of viewport:
 - **Font optimization**: `font-display: swap;` to reduce FOIT
 - **Image optimization**: `<img loading="lazy">`, use `webp/avif`, `srcset/sizes` for responsive images
 
-------
+---
 
 ## 17) Preprocessing & Postprocessing & CSS-in-JS
 
@@ -373,14 +413,17 @@ Switch styles based on **container width** instead of viewport:
 
 ```scss
 @mixin visually-hidden {
-  position:absolute!important;
-  clip: rect(1px,1px,1px,1px);
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
-  height:1px; width:1px; overflow:hidden; white-space:nowrap;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 ```
 
-------
+---
 
 ## 18) Useful Snippets
 
@@ -388,11 +431,15 @@ Switch styles based on **container width** instead of viewport:
 
 ```css
 .single-ellipsis {
-  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .multi-ellipsis {
-  display: -webkit-box; -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 ```
 
@@ -400,21 +447,31 @@ Switch styles based on **container width** instead of viewport:
 
 ```css
 .ratio {
-  position: relative; width: 100%;
+  position: relative;
+  width: 100%;
   padding-top: 56.25%; /* 16:9 */
 }
-.ratio > img, .ratio > iframe {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+.ratio > img,
+.ratio > iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 ```
 
 **3) Safe area (notched screens)**
 
 ```css
-.main { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+.main {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(
+      safe-area-inset-bottom
+    ) env(safe-area-inset-left);
+}
 ```
 
-------
+---
 
 ## 19) Common Pitfalls (Quick Fix)
 
@@ -423,7 +480,7 @@ Switch styles based on **container width** instead of viewport:
 - **Overusing `!important`** hurts maintainability; prefer layers (`@layer`) and low-specificity selectors (`:where`) to design an override path.
 - **Animating `top/left` causes reflow**; prefer `transform`.
 
-------
+---
 
 ## 20) Summary
 

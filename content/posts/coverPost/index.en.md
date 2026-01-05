@@ -4,11 +4,11 @@ title: "📌 PINNED"
 date: 2025-06-28T12:31:01+08:00
 lastmod: 2025-06-28T12:31:01+08:00
 draft: false
-author: "Christine Li"
+author: "Mohan Li"
 images: []
 resources:
-- name: "featured-image"
-  src: "featured-image.png"
+  - name: "featured-image"
+    src: "featured-image.png"
 
 tags: []
 categories: []
@@ -19,16 +19,13 @@ toc:
   auto: false
 ---
 
-
-
 <!--more-->
 
 ## Never stop learning.
 
-
 ## Be a good programmer.
 
-My name is `Christine L`.
+My name is `Mohan L`.
 
 Nice to meet you.✨
 
