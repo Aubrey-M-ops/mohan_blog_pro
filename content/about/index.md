@@ -51,7 +51,7 @@ I'm `Mohan Li`.
 - Optimized performance with **react-window** (−300 ms initial render) and **Recoil**, improving state management and app responsiveness.
 - Built **business components built on top of base components**, adopted **300+ times** across teams, reducing on-call issues by **60%**.
 
-#### Meituan (2022.11-2023.2) (2023.7-2024.7)
+#### Meituan (2022.11 - 2024.7)
 
 > Meituan is `China’s largest local services platform`, with over `400 million` monthly active users, effectively dominating the food delivery, hotel booking, and local services market.
 
