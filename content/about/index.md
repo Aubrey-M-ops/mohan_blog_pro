@@ -21,7 +21,7 @@ math:
 
 <link rel="preload" as="image" href="/images/about_avatar.jpg">
 
-{{< style "img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .about-text { flex: 1; padding-top: 1rem; }" >}}
+{{< style "img[data-src] { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.15); } .about-text { flex: 1; padding-top: 1rem; }" >}}
 
 ![Mohan Li](/images/about_avatar.jpg " ")
 

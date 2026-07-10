@@ -1,2 +1,5 @@
 /public
 /resources/_gen
+.env
+.hugo_build.lock
+.DS_Store

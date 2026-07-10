@@ -5,10 +5,18 @@
 
 set -e
 
-SERVER_IP="107.173.187.190"
-USERNAME="root"
-PASSWORD="***REMOVED***"
-WEB_ROOT="/var/www/html"
+# Load deployment config from .env (not committed to git)
+if [ -f .env ]; then
+    set -a
+    source .env
+    set +a
+else
+    echo "❌ .env not found. Copy .env.example to .env and fill in the values."
+    exit 1
+fi
+
+: "${SSH_HOST:?SSH_HOST not set in .env}"
+: "${WEB_ROOT:?WEB_ROOT not set in .env}"
 
 echo "🚀 Quick deployment to limohan.me..."
 
@@ -16,15 +24,11 @@ echo "🚀 Quick deployment to limohan.me..."
 echo "📦 Building site..."
 hugo --minify --cleanDestinationDir
 
-# Upload files
+# Upload files (uses SSH key auth via ~/.ssh/config host alias)
 echo "📤 Uploading to server..."
-if command -v sshpass >/dev/null 2>&1; then
-    sshpass -p "$PASSWORD" rsync -avz --delete \
-        --exclude '.DS_Store' \
-        public/ ${USERNAME}@${SERVER_IP}:${WEB_ROOT}/
-else
-    rsync -avz --delete public/ ${USERNAME}@${SERVER_IP}:${WEB_ROOT}/
-fi
+rsync -avz --delete \
+    --exclude '.DS_Store' \
+    public/ "${SSH_HOST}:${WEB_ROOT}/"
 
 echo "✅ Deployment completed!"
 echo "🌐 Visit: https://limohan.me"

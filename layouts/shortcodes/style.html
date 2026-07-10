@@ -1,0 +1,3 @@
+{{/* params: css string; wraps inner markdown content and injects a scoped <style> block */}}
+<style>{{ .Get 0 | safeCSS }}</style>
+{{ .Page.RenderString .Inner }}

@@ -4,31 +4,6 @@
 
 echo "🔧 Setting up deployment environment..."
 
-# Check if sshpass is available
-if ! command -v sshpass >/dev/null 2>&1; then
-    echo "📦 Installing sshpass..."
-    
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS
-        if command -v brew >/dev/null 2>&1; then
-            brew install sshpass
-        else
-            echo "❌ Homebrew not found. Please install sshpass manually:"
-            echo "   brew install sshpass"
-            echo "   or download from: https://sourceforge.net/projects/sshpass/"
-        fi
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        # Linux
-        if command -v apt >/dev/null 2>&1; then
-            sudo apt update && sudo apt install -y sshpass
-        elif command -v yum >/dev/null 2>&1; then
-            sudo yum install -y sshpass
-        else
-            echo "❌ Please install sshpass manually for your Linux distribution"
-        fi
-    fi
-fi
-
 # Check if Hugo is available
 if ! command -v hugo >/dev/null 2>&1; then
     echo "❌ Hugo not found. Please install Hugo first:"
@@ -36,7 +11,6 @@ if ! command -v hugo >/dev/null 2>&1; then
     exit 1
 fi
 
-# Check Hugo version
 HUGO_VERSION=$(hugo version)
 echo "✅ Hugo found: $HUGO_VERSION"
 
@@ -48,13 +22,18 @@ else
     echo "✅ rsync found"
 fi
 
-if command -v sshpass >/dev/null 2>&1; then
-    echo "✅ sshpass found"
+# Check SSH access to the deploy host (key-based auth via ~/.ssh/config)
+if [ -f .env ]; then
+    source .env
+fi
+SSH_HOST="${SSH_HOST:-web3-vps}"
+if ssh -o BatchMode=yes -o ConnectTimeout=5 "$SSH_HOST" "echo ok" >/dev/null 2>&1; then
+    echo "✅ SSH access to $SSH_HOST confirmed"
 else
-    echo "⚠️  sshpass not found - you'll need to enter passwords manually"
+    echo "❌ Could not SSH into $SSH_HOST. Check your ~/.ssh/config entry and key."
+    exit 1
 fi
 
 echo ""
 echo "🎉 Setup complete! You can now run:"
-echo "   ./deploy-https.sh    # Full deployment with HTTPS setup"
-echo "   ./quick-deploy.sh    # Quick update (after initial setup)"
+echo "   ./quick-deploy.sh    # Deploy the site"
